@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client"
+    output   = "../generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+model BMCGeneration {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+
+    // Input Data
+    businessName        String
+    productService      String
+    problemSolution     String
+    customerAcquisition String?
+    revenueModel        String?
+    keyResourcesInput   String? // Renamed to distinguish from output
+
+    // Meta
+    model     String
+    ipAddress String?
+
+    // Generated Output
+    customerSegments      String   @db.Text
+    valuePropositions     String   @db.Text
+    channels              String   @db.Text
+    customerRelationships String   @db.Text
+    revenueStreams        String   @db.Text
+    keyResources          String   @db.Text
+    keyActivities         String   @db.Text
+    keyPartnerships       String   @db.Text
+    costStructure         String   @db.Text
+    competitorAnalysis    String   @db.Text
+    marketInsights        String   @db.Text
+    searchQueriesUsed     String[]
+
+    ratings BMCRating[]
+}
+
+model BMCRating {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+
+    bmcGenerationId String
+    bmcGeneration   BMCGeneration @relation(fields: [bmcGenerationId], references: [id])
+
+    ratingModel    String
+    score          Float
+    explanation    String   @db.Text
+    criteriaScores Json
+    strengths      String[]
+    improvements   String[]
+}
