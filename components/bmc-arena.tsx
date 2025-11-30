@@ -113,6 +113,8 @@ export function BMCArena() {
                                 criteriaUsed: ratingCriteria,
                                 timestamp: Date.now(),
                             })
+                        } else {
+                            toast.error(`Error rating ${targetModel.id} by ${ratingModel.id}: ${response.statusText}`)
                         }
                     } catch (error) {
                         console.error(`Error rating ${targetModel.id} by ${ratingModel.id}:`, error)
