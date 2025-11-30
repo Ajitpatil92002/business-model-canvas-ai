@@ -4,6 +4,7 @@ import type { BMCData } from "@/lib/bmc-schema"
 import { DEFAULT_RATING_CRITERIA } from "@/lib/default-rating-criteria"
 import type { AllRatings, RatingCriteria } from "@/lib/rating-schema"
 import { useCallback, useState } from "react"
+import { toast } from 'sonner'
 import { BusinessInfoForm, type BusinessInfo } from "./business-info-form"
 import { Header } from "./header"
 import { HowItWorks } from "./how-it-works"
@@ -115,6 +116,7 @@ export function BMCArena() {
                         }
                     } catch (error) {
                         console.error(`Error rating ${targetModel.id} by ${ratingModel.id}:`, error)
+                        toast.error(`Error rating ${targetModel.id} by ${ratingModel.id}: ${error}`)
                     }
                 }
             }
