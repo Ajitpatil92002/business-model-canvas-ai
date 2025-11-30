@@ -19,6 +19,15 @@ export async function checkRateLimit(identifier: string) {
     return await ratelimit.limit(identifier);
 }
 
+export async function checkListRateLimit(identifier: string) {
+    return {
+        success: true,
+        limit: 100,
+        remaining: 100,
+        reset: new Date(Date.now() + 60 * 1000).toISOString(),
+    };
+}
+
 export function getClientIP(request: Request): string {
     // Check various headers for the real IP
     const forwarded = request.headers.get('x-forwarded-for');

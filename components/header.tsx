@@ -1,4 +1,5 @@
 import { Zap } from "lucide-react"
+import Link from 'next/link'
 
 export function Header() {
     return (
@@ -14,9 +15,13 @@ export function Header() {
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground px-3 py-1 rounded-full bg-secondary">
-                        Powered by Vercel AI Gateway
-                    </span>
+                    <Link
+                        href="/bmc"
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1 rounded-md bg-secondary"
+                    >
+                        View All BMCs
+                    </Link>
+
                 </div>
             </div>
         </header>

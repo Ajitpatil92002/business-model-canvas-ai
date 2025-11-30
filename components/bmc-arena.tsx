@@ -6,6 +6,7 @@ import type { AllRatings, RatingCriteria } from "@/lib/rating-schema"
 import { useCallback, useState } from "react"
 import { BusinessInfoForm, type BusinessInfo } from "./business-info-form"
 import { Header } from "./header"
+import { HowItWorks } from "./how-it-works"
 import { StreamingModelResults } from "./streaming-model-results"
 import { WinnerModal } from "./winner-modal"
 
@@ -143,7 +144,10 @@ export function BMCArena() {
             <Header />
             <div className="flex-1 container mx-auto px-4 py-8">
                 {!businessInfo ? (
-                    <BusinessInfoForm onSubmit={handleSubmit} />
+                    <>
+                        <HowItWorks />
+                        <BusinessInfoForm onSubmit={handleSubmit} />
+                    </>
                 ) : (
                     <StreamingModelResults
                         businessInfo={businessInfo}
